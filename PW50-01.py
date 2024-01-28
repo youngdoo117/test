@@ -75,14 +75,58 @@ def run_timing():
         sum_min += run_time
     print(f"Average of {sum_min/count:5f}, over {count:4d} runs") 
 
+def float_format(a: float, before_decimal, after_decimal):
+    string_float = str(a)
+    i = string_float.index('.')
+    return float(string_float[i-before_decimal:i+after_decimal+1])
+
+from decimal import Decimal
+
+def sum_decimal():
+    a = input("Enter number 1: ")
+    b = input("Enter number 2: ")
+    c = Decimal()
+    c = Decimal(a) + Decimal(b)
+    print(c)
+
+
+def hex_dec(hex_a):
+    hex_str = str(hex_a)
+    length = len(hex_str)
+    b = 0
+    for index, number in enumerate(reversed(hex_str)):
+        b += int(number, 16) * (16 ** index)
+    print(b)
 #a= object_sum(["words", 4, 6])
 #print(a)
 #mysum(3,4,5)
+    
+def name_triangle(name: str):
+    for index, chracter in enumerate(name):
+        print(name[:index+1])
+
+def ord_hex_output():
+    """Get a hex number to convert. Use ord to turn it into an integer,
+and print the decimal equivalent.
+"""
+
+    decnum = 0
+    hexnum = input('Enter a hex number to convert: ')
+    for power, digit in enumerate(reversed(hexnum)):
+        if 48 <= ord(digit) <= 57:
+            dec_digit = ord(digit) - 48
+        elif 97 <= ord(digit) <= 102:
+            dec_digit = ord(digit) - 87
+        # 0 unicode : 48, 9 unicode = 57, so minux 48
+        # a unicode : 97, f unicdoe = 102, so minus 87
+        
+        
+        decnum += dec_digit * (16 ** power)
+    print(decnum)
+
 
 if __name__ == "__main__":
-    run_timing() 
-    print("This is commit!!")
+    name_triangle("youngdoo")
 
 #print(word_summary(["dog", "plane", "bigbig"]))
-
 
