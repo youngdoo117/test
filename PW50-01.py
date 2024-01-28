@@ -79,7 +79,8 @@ def run_timing():
 #print(a)
 #mysum(3,4,5)
 
-run_timing()
+if __name__ = "__main__":
+    run_timing()
 
 #print(word_summary(["dog", "plane", "bigbig"]))
 
