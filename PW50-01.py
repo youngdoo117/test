@@ -125,6 +125,118 @@ and print the decimal equivalent.
     print(decnum)
 
 
+
+
+
+
+
+
+def strsort(instr):
+    print(''.join(sorted(instr)))
+
+
+strsort("youngdoo")
+          
+
+
+def transpose_array():
+    a= ["With the ring", "of light from", "his lantern dancing"]
+    bb = []
+    cc= []
+    for words in a:
+        word = words.split()
+        bb.append(word)
+
+    print(bb)
+
+    for i, _ in enumerate(a):
+        for j, _ in enumerate(a):
+            bb[i][j] = bb[j][i]
+
+
+    print(bb)
+     
+def ips_for_404s(filename):
+    """Given the name of an Apache logfile,
+print the IP address where the response code
+is 4040
+
+"""
+    for one_line in open(filename):
+        if ' 404 ' in one_line:
+            print(one_line.split()[0])\
+
+def ubbi_dubbi(in_str: str):
+    output = []
+    for ch in in_str:
+        if ch.lower() in 'aeiou':
+            if ch.islower():
+                output.append(f"ub{ch}")
+            else:
+                output.append(f"Ub{ch.lower()}")
+        else:
+            output.append(ch)
+    print(''.join(output))
+
+def url_encoding(in_str):
+    output = []
+    for ch in in_str:
+        if ch.lower() not in "abcdefghijklmnopqrstuvwxyz1234567890":
+            output.append(f"%{hex(ord(ch))}")
+        else:
+            output.append(ch)
+    print(''.join(output))
+    
+
+    
+                                        
+def filetext_pig():
+    with open("d:/sample.txt", "r", encoding='utf-8') as f:
+        lines= f.readlines()
+        f.seek(0)
+        contents =f.read()
+        print(contents)
+        result = []
+        for index, line in enumerate(lines):
+            words = line.split()
+            if index > len(words):
+                break
+            result.append(words[index])
+
+        print(' '.join(result))
+
+    modified_contents = contents.replace('.','.\n').replace('!','!\n').replace('?','?\n')
+
+
+    print(modified_contents)
+
+    with open("d:/sample2.txt", "w", encoding='utf-8') as f:
+         f.write(modified_contents)
+
+
+def last_word():
+    with open("d:/sample.txt", "r", encoding="utf-8") as f:
+        content = f.read()
+        words = content.split()
+        print("last word : ", words[-1])
+        longest_word = ""
+        for w in words:
+            if len(w) > len(longest_word):
+                longest_word = w
+        print(longest_word)
+        
+
+def last_word2():
+    i = 0
+    result = []
+    for w in open("d:/sample.txt", encoding="utf-8"):
+        words = w.split()
+        for wd in words:
+            result.append(wd)
+        
+    print(result)
+
+
 if __name__ == "__main__":
     name_triangle("youngdoo")
 
