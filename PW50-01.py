@@ -221,10 +221,7 @@ def url_encoding(in_str):
         else:
             output.append(ch)
     print(''.join(output))
-    
-
-    
-                                        
+                                          
 def filetext_pig():
     with open("d:/sample.txt", "r", encoding='utf-8') as f:
         lines= f.readlines()
@@ -271,13 +268,33 @@ def last_word2():
         
     print(result)
 
+def firstlast(sequence):
+    return sequence[:1] + sequence[-1:]
+    # slicing returns the same type as the original.
+    # indexing returns the type of its individual elements.
+
+def even_odd_sum(seq):
+    output = []
+    output.append(sum(seq[::2]))
+    output.append(sum(seq[1::2]))
+    return output
+def plus_minus(seq):
+    return sum(seq[::2]) - sum(seq[1::2])
+
+def myzip(seq_a, seq_b):
+    output = []
+    for i in range(len(seq_a)):
+        output.append((seq_a[i], seq_b[i]))  # [ tuple, tuple]
+    print(output)
+
 
 if __name__ == "__main__":
-    name_triangle("youngdoo")
-    print("\n\n")
-    pig_latin('Wine!')
-    pig_latin('Eol?')
-    pig_latin3("I have a dream")
-
+#    name_triangle("youngdoo")
+ #   print("\n\n")
+  #  pig_latin('Wine!')
+   # pig_latin('Eol?')
+   # pig_latin3("I have a dream")
+    print(plus_minus([10,20,30]))
+    myzip([10,20,30], "abc")
 #print(word_summary(["dog", "plane", "bigbig"]))
 
