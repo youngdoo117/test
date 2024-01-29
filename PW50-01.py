@@ -124,9 +124,48 @@ and print the decimal equivalent.
         decnum += dec_digit * (16 ** power)
     print(decnum)
 
+def pig_latin(aa: str):
+    length = len(aa)
+    bb = ""
+    # if aa[0].isupper():
+    #     vowels = "AEIOU"
+    # else:
+    #     vowels = "aeiou"
+
+    punctuation = ''
+    if aa[-1] in ".!?":
+        punctuation = aa[-1]
+        aa = aa[0:-1]
+
+    if aa[0].lower() in "aeiou":
+        bb = f"{aa[0:]}way"
+    else:
+        bb = f"{aa[1:]}{aa[0]}ay"
+    bb += punctuation
+    print(bb)
+
+def pig_latin2(aa: str):
+    if len(set("aeiou") & set(aa)) > 1:
+        bb = f"{aa}way"
+    else:
+        bb = f"{aa[1:]}{aa[0]}ay"
+    print(bb)
+
+def pig_latin3(aa: str):
+    result = []
+    for word in aa.split():
+        if word.lower() in "aeiou":
+            result.append(f"{word[0:]}way")
+        else:
+            result.append(f"{word[1:]}{word[0]}ay")
+    print(' '.join(result))
 
 if __name__ == "__main__":
     name_triangle("youngdoo")
+    print("\n\n")
+    pig_latin('Wine!')
+    pig_latin('Eol?')
+    pig_latin3("I have a dream")
 
 #print(word_summary(["dog", "plane", "bigbig"]))
 
