@@ -272,6 +272,88 @@ def last_word2():
     print(result)
 
 
+def mysum2(*elements):
+    if not elements:
+        print("Empty sequence!")
+        return False
+    output = elements[0]
+    for el in elements[1:]:
+        output += el
+    print(output)
+    return output
+
+
+def mysum3(threshold, *args):
+    if not args:
+        print("Empty sequence")
+        return False
+    print(args)
+    index = 0
+    cut_list = []
+    for i, el in enumerate(args):
+        if el > threshold:
+            cut_list.append(el)
+    output = cut_list[0]
+    for el in cut_list[1:]:
+        if el > threshold:
+            output += el
+
+    print(output)
+            
+    
+def sum_numeric(*args):
+    if not args:
+        print("Empty sequence")
+        return False
+    cut_list = []
+    for el in args:
+        try:
+            cut_list.append(int(el))
+        except ValueError as e:
+            continue
+    output = cut_list[0]
+    for el in cut_list[1:]:
+        output += el
+    print(output)
+def sum_numeric2(items):
+    for el in items:
+        try:
+            total += int(el)
+        except ValueError:
+            pass
+    return total
+
+def dict_combine(*args):
+    key_list = []
+    item_list = []
+    output_dict = {}
+    for d in args:
+        for k, v in d.items():
+            if k in output_dict:
+                try:
+                    output_dict[k].append(value)
+                except AttributeError:
+                    output_dict[k] = [output_dict[k], v]
+            else:
+                output_dict[k] = v
+    print(output_dict)
+    return output_dict
+            
+mysum3("f", "a", "c", "h", "z")
+
+
+mysum2([1,2], [3,4])
+sum_numeric("a", 1, 3, "4")
+
+output_dict= dict_combine({'a':3}, {'a':3,'b': 4, 'c' :5}, {'b' : 6})
+
+
+PEOPLE = [
+    {'first':'Reuven', 'last':'Lerner', 'email':'reuven@lerner.co.il'},
+    {'first':'Donald', 'last':'Trump', 'email':'president@whitehouse.gov'},
+    {'first':'Vladimir', 'last':'Putin','email':'president@kremvax.ru'}
+]
+
 if __name__ == "__main__":
     name_triangle("youngdoo")
     print("\n\n")
