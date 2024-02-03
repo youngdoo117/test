@@ -375,6 +375,9 @@ PEOPLE = [
 
 from collections import Counter
 import operator
+from collections import namedtuple
+
+
 def elementary(words):
     max = 0
     repeated_word= ""
@@ -388,6 +391,57 @@ def elementary(words):
 
 words= ["this", "dream", "abaracadabra"]
 
+
+
+person = namedtuple('Person', ['first', 'last', 'arriving_time'])
+
+PEOPLE2 = [('Donald', 'Trump', 7.85),
+('Vladimir', 'Putin', 3.626),
+('Jinping', 'Xi', 10.603)]
+
+PEOPLE3 = []
+for tup in PEOPLE2:
+    PEOPLE3.append(person(tup[0], tup[1], tup[2]))
+
+
+
+words= ["this", "dream", "abaracadabra"]
+
+MOVIES = [('Parasite', 132, 'Bong Joon-ho'),
+          ('Ford v Ferrari', 152, 'James Mangold'),
+          ('The Irishman', 209, 'Martin Scorsese'),
+          ('Jojo Rabbit', 108, 'Taika Waititi'),
+          ('Joker', 122, 'Todd Phillips'),
+          ('Little Women', 135, 'Greta Gerwig'),
+          ('Marriage Story', 137, 'Noah Baumbach'),
+          ('1917', 119, 'Sam Mendes'),
+          ('Once Upon a Time in Hollywood', 161, 'Quentin Tarantino')
+          ]
+
+FIELDS = {'name': 0,
+          'length': 1,
+          'director': 2}
+
+def sort_movie(movies):
+    fields = input("Sort by what? name, length, director : ")
+    fields = fields.split(',')
+
+    f_num = []
+    for f in fields:
+        if f == 'name':
+            f_num.append(0)
+        elif f =='length':
+            f_num.append(1)
+        elif f == 'director':
+            f_num.append(2)
+    output =[]
+    
+    for p in sorted(movies, key=operator.itemgetter(*f_num), reverse=True):
+        output.append(f"{p[0]}, {p[1]}")
+    print('\n'.join(output))  
+
+# 
+
 def vowel_count(word):
     vowel_num = 0
     a = Counter(word)
@@ -399,18 +453,22 @@ def repeat_vowel(words):
     print(max(words, key=vowel_count))
 
 
-    
 
 
-
-
+def format_sort_records(list_of_tuples):
+    template = '{last:10} {first:10} {arriving_time:5.2f}'
+    output =[]
+    for p in sorted(list_of_tuples, key=operator.attrgetter('last','first')):
+        output.append(template.format(**(p._asdict())))
+        #$        print(*(p._asdict()))
+        #output.append(template.format(*(p._asdict())))
+        
+    return output
 if __name__ == "__main__":
-#    name_triangle("youngdoo")
- #   print("\n\n")
-  #  pig_latin('Wine!')
-   # pig_latin('Eol?')
-   # pig_latin3("I have a dream")
-    print(plus_minus([10,20,30]))
-    myzip([10,20,30], "abc")
-#print(word_summary(["dog", "plane", "bigbig"]))
+    #elementary(words)
+    repeat_vowel(words)
+    print('\n'.join(format_sort_records(PEOPLE3)))
+    sort_movie(MOVIES)    
+    
+    
 
