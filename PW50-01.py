@@ -364,11 +364,45 @@ sum_numeric("a", 1, 3, "4")
 output_dict= dict_combine({'a':3}, {'a':3,'b': 4, 'c' :5}, {'b' : 6})
 
 
+
+
 PEOPLE = [
     {'first':'Reuven', 'last':'Lerner', 'email':'reuven@lerner.co.il'},
     {'first':'Donald', 'last':'Trump', 'email':'president@whitehouse.gov'},
     {'first':'Vladimir', 'last':'Putin','email':'president@kremvax.ru'}
 ]
+
+
+from collections import Counter
+import operator
+def elementary(words):
+    max = 0
+    repeated_word= ""
+    for w in words:
+        if Counter(w).most_common(1)[0][1] > max:
+            max = Counter(w).most_common(1)[0][1]
+            repeated_word = w
+    print(repeated_word)
+
+
+
+words= ["this", "dream", "abaracadabra"]
+
+def vowel_count(word):
+    vowel_num = 0
+    a = Counter(word)
+    for w in 'aeiou':
+        vowel_num += a[w]
+    return vowel_num
+
+def repeat_vowel(words):
+    print(max(words, key=vowel_count))
+
+
+    
+
+
+
 
 if __name__ == "__main__":
 #    name_triangle("youngdoo")
