@@ -347,21 +347,29 @@ def dict_combine(*args):
         for k, v in d.items():
             if k in output_dict:
                 try:
-                    output_dict[k].append(value)
+                    output_dict[k].append(v)
                 except AttributeError:
                     output_dict[k] = [output_dict[k], v]
             else:
                 output_dict[k] = v
     print(output_dict)
     return output_dict
-            
-mysum3("f", "a", "c", "h", "z")
+
+import operator
+
+def alphabetize_names(dicts: list):
+    print(operator.itemgetter('last')(sorted))
 
 
-mysum2([1,2], [3,4])
-sum_numeric("a", 1, 3, "4")
 
-output_dict= dict_combine({'a':3}, {'a':3,'b': 4, 'c' :5}, {'b' : 6})
+
+#mysum3("f", "a", "c", "h", "z")
+
+
+#mysum2([1,2], [3,4])
+#sum_numeric("a", 1, 3, "4")
+
+#output_dict= dict_combine({'a':3}, {'a':3,'b': 4, 'c' :5}, {'b' : 6})
 
 
 PEOPLE = [
@@ -369,6 +377,19 @@ PEOPLE = [
     {'first':'Donald', 'last':'Trump', 'email':'president@whitehouse.gov'},
     {'first':'Vladimir', 'last':'Putin','email':'president@kremvax.ru'}
 ]
+
+for p in sorted(PEOPLE, key = lambda x: [x['last'], x['first']]):
+    print(f"{p['last']}, {p['first']}, {p['email']}")
+
+def alphabetize_names(lists):
+    return sorted(lists, key=operator.itemgetter('last','first') )
+
+def by_vowel_count(one_word):
+    total = 0
+    for one_character in one_word.lower():
+        if one_character in 'aeiou':
+            total += 1
+    return total
 
 if __name__ == "__main__":
 #    name_triangle("youngdoo")
@@ -378,5 +399,6 @@ if __name__ == "__main__":
    # pig_latin3("I have a dream")
     print(plus_minus([10,20,30]))
     myzip([10,20,30], "abc")
+    alphabetize_names(PEOPLE)
 #print(word_summary(["dog", "plane", "bigbig"]))
 
