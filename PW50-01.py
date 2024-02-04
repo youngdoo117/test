@@ -497,6 +497,57 @@ def format_sort_records(list_of_tuples):
         #output.append(template.format(*(p._asdict())))
         
     return output
+
+d = dict(sandwich = 10, tea=7)
+def restaurant():
+    total = 0
+    while True:
+        order = input("what is your order? ") 
+        if not order:
+            break
+        elif order in d:
+            total += d[order]
+            print(f"{order} costs {d[order]}, total is {total}")
+        else:
+            print(f"{order} is not here!!")
+            
+    print(f"Your total is {total}")
+
+
+userlist = dict(gyd123=1234, junwoo=2301)
+
+def login_chk():
+    while True:
+        user = input("userID: ")
+        if user not in userlist:
+            print("No account information")
+            continue        
+
+        pwd = int(input("password: "))
+        if pwd == userlist[user]:
+            print("Successfully logged in!")
+        else:
+            print("Your password is wrong!")
+
+import datetime
+from datetime import timedelta
+
+startday = datetime.datetime(year=2024, month=1, day=15)
+nextday = startday + timedelta(days=1)
+startday = startday.strftime("%Y%M%D") 
+
+temp_list = {f"{startday}": 5, f"{nextday}": -2}
+
+family_dict = dict(youngdoo = datetime.datetime(year=1982, month=2, day=5), junwoo = datetime.datetime(2023, month=1, day=17))
+               
+lived_days = datetime.datetime.today() - family_dict['junwoo'] 
+
+print(lived_days.days)
+               
+
+
+
+
 if __name__ == "__main__":
     #elementary(words)
     repeat_vowel(words)
