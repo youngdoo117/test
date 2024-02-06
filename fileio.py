@@ -60,4 +60,9 @@ for i in open("d:/text/passwd.txt"):
         except AttributeError:
             output[infos[-1]] = [infos[0]]
 
+for i in open("d:/text/passwd.txt"):
+    if not i.startswith(("#", "\n")):
+        infos = i.split(":")
+        output2[infos[0]] = {"userid": infos[2], "homedir": infos[-2], "shell": infos[-1]}
+
 
