@@ -66,3 +66,11 @@ for i in open("d:/text/passwd.txt"):
         output2[infos[0]] = {"userid": infos[2], "homedir": infos[-2], "shell": infos[-1]}
 
 
+for aa in b:
+    for i in range(aa):
+        if aa % (i+1) == 0:
+            print(i+1)
+            try:
+                output3[str(i+1)].append(aa)
+            except KeyError:
+                output3[str(i+1)] = [aa]
