@@ -65,6 +65,7 @@ for i in open("d:/text/passwd.txt"):
         infos = i.split(":")
         output2[infos[0]] = {"userid": infos[2], "homedir": infos[-2], "shell": infos[-1]}
 
+b = [1,2,6,8,10,14,15]
 
 for aa in b:
     for i in range(aa):
@@ -74,3 +75,14 @@ for aa in b:
                 output3[str(i+1)].append(aa)
             except KeyError:
                 output3[str(i+1)] = [aa]
+
+for aa in b:
+    for i in range(aa):
+        if aa % (i+1) == 0:
+            print(i+1)
+            if output3.get(str(i+1)):
+                output3[str(i+1)].append(aa) 
+            else:
+                output3[str(i+1)] = [aa]
+
+
