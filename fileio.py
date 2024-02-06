@@ -45,4 +45,19 @@ for current_line in open('d:/sample.txt', encoding='utf-8'):
 
 
 print("\n", vowel_output, "\n\n")
-            
+
+
+for i in open("d:/text/passwd.txt"):
+    if not i.startswith(("#", "\n")):
+        infos = i.split(":")
+        output[infos[-1]] = infos[0]
+
+for i in open("d:/text/passwd.txt"):
+    if not i.startswith(("#", "\n")):
+        infos = i.split(":")
+        try:
+            output[infos[-1]].append(infos[0])
+        except AttributeError:
+            output[infos[-1]] = [infos[0]]
+
+
