@@ -546,14 +546,61 @@ print(lived_days.days)
                
 
 
+d1 = dict(a=1,b=2, c=3)
+d2 = dict(a=1, b=2, c=2)
+
+def dictdiff(d1, d2):
+    key1 = d1.keys()
+    key2 = d2.keys()
+    union_key = set(key1)|(set(key2))
+    output = {}
+    for k in union_key:
+        if d1.get(k) != d2.get(k):
+            output[k] = [d1.get(k), d2.get(k)]
+    print(output)
+
+
+def dictmerge(d1, d2):
+    key1 = d1.keys()
+    key2 = d2.keys()
+    union_key = set(key1)|(set(key2))
+    for k in union_key:
+        if d2.get(k) != None:
+            d1[k] = d2[k]
+    print(d1)
+
+def create_dict(*arg):
+    output = {arg[i] : arg[i+1] for i in range(0, len(arg), 2)}
+    print(output)
+
+d3 = dict(a=2, b=3, c=5, d= 6)
+
+def dict_partition(d, f):
+
+    output1 = { k : v for k, v in d.items() if f(v) }
+    output2 = { k : v for k, v in d.items() if f(v) == False }
+    print("#1 : ", output1)
+    print("#2 : ", output2)
+
+
+
+def is_even(v):
+    if v % 2 == 0:
+        return True
+    else:
+        return False
+
+file_ext = [os.path.splitext(a)[1] for a in os.listdir()]
+file_ext
 
 
 if __name__ == "__main__":
     #elementary(words)
     repeat_vowel(words)
     print('\n'.join(format_sort_records(PEOPLE3)))
-    sort_movie(MOVIES)    
-    
-    
->>>>>>> a27adc668a7abd61713ea28811362efa85ab89ee
+    #sort_movie(MOVIES)
+    dictdiff(d1,d2)
+    dictmerge(d1, d2)
+    create_dict('a',1,'b',3)
+    dict_partition(d3, is_even)
 
