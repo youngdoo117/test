@@ -86,3 +86,22 @@ for aa in b:
                 output3[str(i+1)] = [aa]
 
 
+
+import glob
+a = glob.glob("d:/texts")
+for f in a:
+    filestat[os.path.basename(f)] = os.stat(f).st_size
+
+for f in a:
+    for line in open(f, encoding="utf-8"):
+        for w in line.split():
+            if w[-1] in ",.;:?!":
+                w = w[:-1]
+            if word_count.get(w.lower()):
+                word_count[w.lower()] += 1
+            else:
+                word_count[w.lower()] = 1
+
+
+Counter(word_count).most_common(5)
+
