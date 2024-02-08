@@ -147,5 +147,37 @@ def dict_csv(d):
 d1 = dict(a=1, b=2, c=33, d=44)
 
 
+
+import json
+import glob
+
+def print_scores(dirname):
+    scores = {}
+
+    for fn in glob.glob(f"d:/{dirname}/*.json"):
+        scores[fn] = {}
+
+        with open(fn) as infile:
+            for result in json.load(infile):
+                for subject, score in result.items():
+                    scores[fn].setdefault(subject, [])
+                    scores[fn][subject].append(score)
+
+    print(scores)
+    for one_class in scores:
+        print(one_class)
+        for subject, subject_scores in scores[one_class].items():
+            min_score = min(subject_scores)
+
+            print(subject)
+            print(f"\tmin {min_score}")
+
+
+print_scores("python")
+
+            
+
+
+
 dict_csv(d1)
 
