@@ -105,3 +105,47 @@ for f in a:
 
 Counter(word_count).most_common(5)
 
+
+
+import csv
+
+def password_csv(f1, f2=0):
+
+    with open('d:/password.csv', 'w') as f, open('d:/passwd.txt', 'r') as g:
+        r = csv.reader(g, delimiter=':')
+        o = csv.writer(f, delimiter=',')
+        for record in r:
+            if len(record) > 1:
+                o.writerow((record[0], record[2]))
+##        for line in open(f1, encoding='utf-8'):
+##            if not (line.startswith('#')):
+##                line = line.split(':')
+##                o.writerow((line[0], line[2]))
+
+
+def password_csv2():
+    fields = input("Select field numbers : ")
+    print(fields)
+    fields = [int(i) for i in fields.split()]
+    delimiter = input("Select delimiter : ")
+    with open('d:/password2.csv', 'w') as f, open('d:/passwd.txt', 'r') as g:
+        r= csv.reader(g, delimiter=':')
+        o = csv.writer(f, delimiter=delimiter)
+        for record in r:
+            if len(record) > 1:
+                o.writerow((record[i] for i in fields))
+
+
+#password_csv2()
+
+
+def dict_csv(d):
+    with open('d:/dict_csv.csv','w') as f:
+        o = csv.writer(f, delimiter=":")
+        o.writerow((k, v, type(v)) for k, v in d.items())
+    
+d1 = dict(a=1, b=2, c=33, d=44)
+
+
+dict_csv(d1)
+
