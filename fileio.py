@@ -181,3 +181,32 @@ print_scores("python")
 
 dict_csv(d1)
 
+
+
+import csv
+import json
+import glob
+
+import os 
+
+with open('d:/text/passwd.txt') as f, open("d:/text/pass.json", "w") as output:
+    a = csv.reader(f, delimiter =':')
+    for line in a:
+        if len(line) > 1:
+            print(line)
+            bb = line
+            aa = dict(username=bb[0], password=bb[2], shell=bb[-2], userdir=bb[-1])
+            json.dump(aa, output)
+
+
+
+            
+with open("d:/text/fileinfo.json", "w") as f:
+    for aa in glob.glob("d:/cinema/*.*"):
+        stat_result = os.stat(aa)
+        stat_dict = dict((key, getattr(stat_result, key)) for key in dir(stat_result) if key.startswith('st_'))
+        print(stat_dict)
+        json.dump(stat_dict, f)
+
+
+dd = dict((key, getattr(aa, key)) for key in dir(aa) if key.startswith("st_"))
