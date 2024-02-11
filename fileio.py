@@ -183,6 +183,7 @@ dict_csv(d1)
 
 
 
+
 import csv
 import json
 import glob
@@ -210,6 +211,53 @@ with open("d:/text/fileinfo.json", "w") as f:
 
 
 dd = dict((key, getattr(aa, key)) for key in dir(aa) if key.startswith("st_"))
+
+
+
+
+def reverse_lines(infile, outfile):
+    with open(infile, "r") as input_file, open(outfile, "w") as output_file:
+        for line in input_file:
+            output_file.write(f"{line.rstrip()[::-1]}\n")
+
+reverse_lines("d:/text/passwd.txt", "d:/text/rev.text")
+
+
+
+def myxml(tagname, content="", **kwargs):
+    attrs = ''.join([f""""{k}="{v}" """ for k, v in kwargs.items()])
+    return f"<{tagname} {attrs}>{content}</{tagname}>"
+
+print(myxml("foo", "hello", a=1, b=2))
+
+
+import shutil
+import os
+from pathlib import Path 
+
+def copyfile(source_file, *args):
+    base = Path(source_file).parent
+    dest_files = [Path(base, fn) for fn in args]
+    for df in dest_files:
+        shutil.copyfile(source_file, df)
+
+
+copyfile("d:/text/passwd.txt", "b1.txt", "c1.txt")
+
+    
+def num_factorial(*args):
+    output = 1
+    for i in args:
+        output *= i
+    print(output)
+
+num_factorial(1, 4, 5)
+
+def anyjoin(seq, glue=" "):
+    seq2 = [str(i) for i in seq]
+    print(glue.join(seq2))
+
+anyjoin([1,2,3], glue=":")
 
 
 import operator
