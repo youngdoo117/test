@@ -210,3 +210,99 @@ with open("d:/text/fileinfo.json", "w") as f:
 
 
 dd = dict((key, getattr(aa, key)) for key in dir(aa) if key.startswith("st_"))
+
+
+import operator
+import random
+
+def calc_func():
+    op_dict = {
+        '+': operator.add, '-': operator.sub, '*': operator.mul,
+        '/': operator.truediv, '**': operator.pow, '%': operator.mod}
+    user_input = input("What to calculate? ")
+    op, *numstr = user_input.split()
+    num = [ float(i) for i in numstr]
+    print(num)
+    output = num[0]        
+    for i, _ in enumerate(num):
+        if i + 1 >= len(num):
+            break
+        output = op_dict[op](output, num[i+1])
+    print(output)
+
+
+
+def add_one(i):
+    try:
+        return int(i) + 1
+    except ValueError:
+
+        return i + " "
+    
+
+def apply_to_each(func, seq):
+    result = [func(el) for el in seq]
+
+    print(result)
+
+def apply_to_eachline(func, infile, outfile):
+    with open(infile, "r") as f1, open(outfile, "w") as f2:
+        for line in f1.read():
+            f2.write(str(func(line)))
+
+def create_pwd_generator(chs):
+    def func(a: int):
+        output = []
+        for i in range(a):
+            output.append(random.choice(chs))
+        print(''.join(output))
+    return func
+def create_pwd_checker(min_uppercase, min_digits):
+    def func(pwd):
+        uppercase = 0
+        digit = 0 
+        for ch in pwd:
+            if ch.isupper():
+                uppercase += 1
+                print("upper")
+            if ch.isdigit():
+                digit += 1
+                print("digit")
+        if uppercase >= min_uppercase and digit >= min_digits:
+            print(f"Ok!! {uppercase}   {digit}")
+            return True
+    return func
+
+def getitem(index):
+    def f(seq):
+        print(seq[index])
+    return f
+
+def doboth(f1,f2):
+    def f(x):
+        return f1(f2(x))
+    return f
+
+apply_to_eachline(add_one, "d:/text/passwd.txt", "d:/text/aaww.txt")
+
+alpha_password = create_pwd_generator("abcde*&^")
+alpha_password(21)
+aa = create_pwd_checker(2, 2)
+print(aa("A111"))
+print(aa("BBb1111"))
+
+
+d1 = {'a': 1, 'b': 3}
+
+getter = getitem('b')
+getter(d1)
+
+def f1(a):
+    return a + 2
+
+def f2(b):
+    return b * 5
+
+
+doboth_func = doboth(f1, f2)
+print(doboth_func(3))
