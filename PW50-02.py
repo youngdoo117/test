@@ -354,3 +354,86 @@ def f2(b):
 
 doboth_func = doboth(f1, f2)
 print(doboth_func(3))
+
+
+
+##
+##
+##with open("d:/sample.txt", encoding="utf-8") as f:
+##    for line in f:
+##        print(' '.join([i for i in  reversed(line.split())]))
+##        
+
+user_input = input("Enter number : ")
+user_input = user_input.split()
+
+print(sum(int(i) for i
+          in user_input
+          if i.isdigit())
+      )
+
+
+def contain_wvxyz(line):
+    chk_ch = "q"
+    return any(char in chk_ch for char in line)
+      
+with open("d:/sample.txt", encoding="utf-8") as f:
+    print([line for line in f
+           if len(line) > 40 and contain_wvxyz(line)])
+
+def inc_areacode(telnum):
+    if int(telnum[4]) <= 5:
+        return f"{telnum[:2]}{int(telnum[2])+1}{telnum[3:]}"
+    else:
+        return telnum
+
+def increment_area_code(telnum):
+    area_code, phone_number = telnum.split('-', 1)
+    if phone_number[0] in '012345':
+        area_code = str(int(area_code) + 1)
+
+    return f'{area_code}-{phone_number}'
+    
+tel = ['123-456-7890', '123-333-4444', '123-777-8888']
+name = ['chusoo', 'suni', 'younghee', 'minkwon']
+age = [ 30, 18, 24, 17]
+print([increment_area_code(t) for t in tel])
+persons_edited = [{'name': a, 'age' : b, 'age_in_month': b*12}
+                  for a, b in zip(name,age)
+                  if b > 20
+                  ]
+
+persons = [{'name': a, 'age' : b} for a, b in zip(name, age)]
+
+def age_in_months(mylist):
+    return [dict(**one_person, age_in_months=one_person['age'] * 12)
+            for one_person in mylist
+            if one_person['age'] <= 20]
+
+for i in persons:
+    print("{name} is {age} years old".format(**i))
+
+print(age_in_months(persons))
+
+
+def odd_num(a):
+    try:
+        if int(a) % 2 != 0:
+            return True
+    except ValueError:
+        return False
+blist = [[10, 21, "33"], ["40e", 17], [44, 67]]
+print([int(one_element) for sublist in blist for one_element in sublist
+       if str(one_element).isdigit() and int(one_element) % 2 != 0])
+
+
+family = {'A':['B', 'C', 'D'], 'E':['F', 'G']}
+import random
+
+b = [dict(name=child, age=random.randint(10,30))
+            for parent in family.values() for child in parent]
+
+import operator
+print([onechild
+       for onechild in sorted(b, key=operator.itemgetter('age'), reverse=True)])
+
