@@ -437,3 +437,23 @@ import operator
 print([onechild
        for onechild in sorted(b, key=operator.itemgetter('age'), reverse=True)])
 
+
+
+
+
+def piglatin(word):
+    if word[0].lower() in "aeiou":
+        return f"{word[0:]}way"
+    else:
+        return f"{word[1:]}{word[0]}ay"
+    
+    
+def plword_file(file):
+    return ' '.join(piglatin(word)
+                    for line in open(file, encoding='utf-8')
+                    for word in line.split())
+if __name__ == "__main__":
+    print(plword_file("d:/text/sample.txt"))
+    
+
+        
