@@ -455,5 +455,96 @@ def plword_file(file):
 if __name__ == "__main__":
     print(plword_file("d:/text/sample.txt"))
     
+d = {'a':1, 'b':2, 'c':3, 'd': 4}
 
+
+def transform_values(d, func, filter_func):
+    return {k : func(value) for k, value in d.items() if filter_func(k, value)}
+
+def filter_func(k, value):
+    if k == 'a' or value % 2 == 0:
+        return True
+
+
+def idpwd_dict(file):
+    d = {line.split(':')[0] : line.split(':')[2]
+         for line in open(file, encoding='utf-8')
+         if not line.startswith('#')}
+
+    f = { line.split(':')[-1]
+         for line in open(file, encoding='utf-8')
+         if not line.startswith('#')}
+    print("# of distinct shells :", len(f))
+    print(d)
+
+        
+import glob
+import os
+
+def dir_dict(path):
+    d = {os.path.basename(file): os.stat(file).st_size
+         for file in glob.glob(os.path.join(path, '*.*'))
+         if os.path.isfile(file)
+         }
+    print(d)
+
+dir_dict('d:/')
+
+print(transform_values(d, lambda x: x*x, filter_func))
+
+idpwd_dict('d:/passwd.txt')
+
+def volcanic():
+    vowel = set('aeiou')
+    b = { word.strip() for word in open('d:/words.txt', encoding='utf-8') if vowel < set(word)}
+    print(b)
+
+# volcanic()
+
+def diff_words(file):
+    d = {word
+        for line in open(file, encoding='utf-8')
+        for word in line.split()}
+    w_length = {len(word) for word in d}
+    print(w_length)
+    
+
+diff_words('d:/sample.txt')
+
+family = {'youngdoo', 'hyomi', 'junwoo', 'hyeonok'}
+def ch_family(family):
+    d = {ch for name in family
+         for ch in name}
+    print(d)
+
+ch_family(family)
+
+
+import string
+
+g1 = {c : index for index, c in enumerate(string.ascii_lowercase, 1)}
+
+def gamatria(word):
+    return sum(g1.get(c, 0) for c in word)
+
+gamatria("abc")
+
+def gematria_equal(word):
+    val = gamatria(word)
+    output = [word.strip() for word in open("d:/words.txt", encoding="utf-8")
+              if gamatria(word.lower().strip()) == val]
+    print(output)
+    print(gamatria('aubusson'), gamatria('vulnerable'), '####')
+
+gematria_equal('vulnerable')
+d = [dict(user=line.split('=')[0], preference=line.split('=')[1])
+     for line in open('d:/config.txt', encoding='utf-8')
+     if line.split('=')[1].strip().isdigit()]
+
+
+import json
+with open('d:/cities.json', encoding='utf-8') as f:
+    b = json.load(f)
+
+c = {(city['state'], city['city']) : city['population'] for city in b}
         
